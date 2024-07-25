@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<h2>Ticket #{{ ticket.id }}</h2>
+<form method="POST">
+    <label for="status">Status:</label>
+    <select name="status" id="status">
+        <option value="Pending" {% if ticket.status == 'Pending' %}selected{% endif %}>Pending</option>
+        <option value="In review" {% if ticket.status == 'In review' %}selected{% endif %}>In review</option>
+        <option value="Closed" {% if ticket.status == 'Closed' %}selected{% endif %}>Closed</option>
+    </select>
+    <label for="note">Note:</label>
+    <textarea name="note" id="note">{{ ticket.note }}</textarea>
+    <button type="submit">Update</button>
+</form>
+{% endblock %}
